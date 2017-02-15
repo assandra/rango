@@ -33,6 +33,7 @@ def index(request):
    context_dict['visits'] = request.session['visits']
 
    response = render(request, 'rango/index.html', context=context_dict)
+
    return response
 
 
@@ -73,7 +74,10 @@ def about(request):
         print("TEST COOKIE WORKED!")
         request.session.delete_test_cookie()
 
-    context_dict1 = { 'boldmessage': "This tutorial has been put together by Assandra Falls"}
+    context_dict1 = {'boldmessage': "This tutorial has been put together by Assandra Falls"}
+    visitor_cookie_handler(request)
+    context_dict1['visits'] = request.session['visits']
+
    #return HttpResponse("Rango says here is the about page")
     return render(request, 'rango/about.html', context=context_dict1)
 
